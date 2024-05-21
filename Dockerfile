@@ -1,9 +1,9 @@
 # Usa una imagen base de Debian
 FROM debian:stable-slim
 
-# Instala wget, sudo, jq, bash-completion, git, iputils-ping, cat, less, y bc
+# Instala wget, sudo, jq, bash-completion, git, iputils-ping, cat, less, bc, y curl
 RUN apt-get update && \
-    apt-get install -y wget sudo jq bash-completion git iputils-ping coreutils less procps bc && \
+    apt-get install -y wget sudo jq bash-completion git iputils-ping coreutils less procps bc curl && \
     rm -rf /var/lib/apt/lists/*
 
 # Agrega el usuario satoshi y con permisos de sudo
@@ -20,7 +20,7 @@ WORKDIR /home/satoshi
 #COPY .bashrc /home/satoshi/.bashrc
 
 # Comandos wget, sudo, jq, git, ping, cat y less
-RUN wget --version && sudo --version && jq --version && git --version && ping -V && cat --version && less --version
+RUN wget --version && sudo --version && jq --version && git --version && ping -V && cat --version && less --version && bc --version && curl --version
 
 # Personaliza el prompt de la terminal y habilita el autocompletado
 RUN echo "export PS1='🐳 \[\033[1;34m\](satoshi)\[\033[0;35m\] \[\033[1;36m\]\h \[\033[1;34m\]\W\[\033[0;35m\] \[\033[1;36m\]# \[\033[0m\]'" >> /home/satoshi/.bashrc && \
