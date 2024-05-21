@@ -40,5 +40,8 @@ ADD shared /home/satoshi/shared
 # mount /home/satoshi/shared as volume on host
 VOLUME /home/satoshi/shared
 
+COPY ./bin/entrypoint.sh /
+
+ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["bash"]
